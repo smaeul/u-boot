@@ -8,4 +8,8 @@
 
 #include <configs/sunxi-common.h>
 
+#ifdef CONFIG_RISCV
+#define CONFIG_SYS_BOOTM_LEN           (32 << 20)
+#endif
+
 #endif /* __CONFIG_H */
