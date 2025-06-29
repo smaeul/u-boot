@@ -617,6 +617,14 @@ int ft_board_setup(void *blob, struct bd_info *bd)
 	if (r)
 		return r;
 #endif
+
+#ifdef CONFIG_TARGET_SUN20I_D1
+	r = fdt_fixup_memory(blob, (u64)gd->ram_base, (u64)gd->ram_size);
+	if (r)
+		printf("WARNING: DRAM fdt_fixup failed\n");
+
+#endif
+
 	return 0;
 }
 

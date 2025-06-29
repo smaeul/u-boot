@@ -118,6 +118,20 @@
 #define FDTOVERLAY_ADDR_R __stringify(SDRAM_OFFSET(FE00000))
 #define RAMDISK_ADDR_R    __stringify(SDRAM_OFFSET(FF00000))
 
+#elif (CONFIG_SUNXI_MINIMUM_DRAM_MB >= 512)
+/*
+ * 416 RAM (512M minimum minus 64MB heap + 32MB for u-boot, stack, fb, etc.
+ * 64M uncompressed kernel, 1M fdt,
+ * 1M script, 1M pxe, 1M dt overlay and the ramdisk at the end.
+ */
+#define BOOTM_SIZE        __stringify(0xa000000)
+#define KERNEL_ADDR_R     __stringify(SDRAM_OFFSET(2000000))
+#define FDT_ADDR_R        __stringify(SDRAM_OFFSET(6000000))
+#define SCRIPT_ADDR_R     __stringify(SDRAM_OFFSET(6100000))
+#define PXEFILE_ADDR_R    __stringify(SDRAM_OFFSET(6200000))
+#define FDTOVERLAY_ADDR_R __stringify(SDRAM_OFFSET(6300000))
+#define RAMDISK_ADDR_R    __stringify(SDRAM_OFFSET(6400000))
+
 #elif (CONFIG_SUNXI_MINIMUM_DRAM_MB >= 256)
 /*
  * 160M RAM (256M minimum minus 64MB heap + 32MB for u-boot, stack, fb, etc.
