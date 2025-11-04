@@ -1037,6 +1037,8 @@ OBJCOPYFLAGS_u-boot-resume.bin := -O binary
 u-boot-resume.bin: u-boot-resume.o
 	$(call if_changed,objcopy)
 
+u-boot-resume.o: u-boot-resume.S
+
 u-boot-resume.S: u-boot
 	@sed -En 's/(0x[[:xdigit:]]+) +psci_cpu_entry/ldr pc, =\1/p' $<.map > $@
 endif
